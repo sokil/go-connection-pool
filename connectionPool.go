@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-// connection puul
+// connection pool
 type ConnectionPool struct {
 	mutex sync.RWMutex
 	list map[int]net.Conn
