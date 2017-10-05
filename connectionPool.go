@@ -8,12 +8,12 @@ import (
 // connection pool
 type ConnectionPool struct {
 	mutex sync.RWMutex
-	list map[int]net.Conn
+	list  map[int]net.Conn
 }
 
 // factory method to get new connection pool
 func NewConnectionPool() ConnectionPool {
-	pool := ConnectionPool {
+	pool := ConnectionPool{
 		list: make(map[int]net.Conn),
 	}
 

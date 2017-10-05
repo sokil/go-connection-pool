@@ -1,9 +1,9 @@
 package connectionPool
 
 import (
-	"testing"
-	"reflect"
 	"net"
+	"reflect"
+	"testing"
 )
 
 func TestNewConnectionPool(t *testing.T) {
