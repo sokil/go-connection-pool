@@ -11,7 +11,7 @@ type ConnectionPool struct {
 	list  map[int]net.Conn
 }
 
-// factory method to get new connection pool
+// NewConnectionPool is the factory method to create new connection pool
 func NewConnectionPool() *ConnectionPool {
 	pool := &ConnectionPool{
 		list: make(map[int]net.Conn),
@@ -20,7 +20,7 @@ func NewConnectionPool() *ConnectionPool {
 	return pool
 }
 
-// add collection to pool
+// Add collection to pool
 func (pool *ConnectionPool) Add(connection net.Conn) int {
 	pool.mutex.Lock()
 	nextConnectionId := len(pool.list)
@@ -29,7 +29,7 @@ func (pool *ConnectionPool) Add(connection net.Conn) int {
 	return nextConnectionId
 }
 
-// get connection by id
+// Get connection by id
 func (pool *ConnectionPool) Get(connectionId int) net.Conn {
 	pool.mutex.RLock()
 	connection := pool.list[connectionId]
@@ -37,19 +37,19 @@ func (pool *ConnectionPool) Get(connectionId int) net.Conn {
 	return connection
 }
 
-// remove connection from pool
+// Remove connection from pool
 func (pool *ConnectionPool) Remove(connectionId int) {
 	pool.mutex.Lock()
 	delete(pool.list, connectionId)
 	pool.mutex.Unlock()
 }
 
-// get size of connections pool
+// Size of connections pool
 func (pool *ConnectionPool) Size() int {
 	return len(pool.list)
 }
 
-// iterator
+// Range iterates over pool
 func (pool *ConnectionPool) Range(callback func(net.Conn, int)) {
 	pool.mutex.RLock()
 	for connectionId, connection := range pool.list {
