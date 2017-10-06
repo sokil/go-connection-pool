@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-// connection pool
+// ConnectionPool is a thread safe list of net.Conn instances
 type ConnectionPool struct {
 	mutex sync.RWMutex
 	list  map[int]net.Conn
