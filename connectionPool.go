@@ -12,8 +12,8 @@ type ConnectionPool struct {
 }
 
 // factory method to get new connection pool
-func NewConnectionPool() ConnectionPool {
-	pool := ConnectionPool{
+func NewConnectionPool() *ConnectionPool {
+	pool := &ConnectionPool{
 		list: make(map[int]net.Conn),
 	}
 
