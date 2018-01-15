@@ -22,6 +22,9 @@ connectionId := connectionPool.Add(connection)
 // get connection and read
 reader := bufio.NewReader(connectionPool.Get(connectionId))
 
+// count of connections in pool
+size := connectionPool.Size()
+
 // send message to all connections in pool
 connectionPool.Range(func(targetConnection net.Conn, targetConnectionId int) {
     writer := bufio.NewWriter(targetConnection)
