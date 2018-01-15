@@ -8,27 +8,27 @@ Connection pool for go's net.Conn
 ## Basic usage
 
 ```go
-	socket, err := net.Listen("tcp", "127.0.0.1:8080")
+socket, err := net.Listen("tcp", "127.0.0.1:8080")
   
-	// prepare connection pool
-	connectionPool := connectionPool.NewConnectionPool()
+// prepare connection pool
+connectionPool := connectionPool.NewConnectionPool()
   
-  // accept connection
-	connection, err := socket.Accept()
+// accept connection
+connection, err := socket.Accept()
     
-  // add connection to pool
-  connectionId := connectionPool.Add(connection)
-  
-  // get connection and read
-  reader := bufio.NewReader(connectionPool.Get(connectionId))
-  
-  // send message to all connections in pool
-  connectionPool.Range(func(targetConnection net.Conn, targetConnectionId int) {
+// add connection to pool
+connectionId := connectionPool.Add(connection)
+
+// get connection and read
+reader := bufio.NewReader(connectionPool.Get(connectionId))
+
+// send message to all connections in pool
+connectionPool.Range(func(targetConnection net.Conn, targetConnectionId int) {
     writer := bufio.NewWriter(targetConnection)
     writer.WriteString("Some message\n")
     writer.Flush()
-  })
-      
-  // remove connection from bool
-  connectionPool.Remove(connectionId)
+})
+
+// remove connection from bool
+connectionPool.Remove(connectionId)
 ```
