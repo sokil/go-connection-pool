@@ -4,7 +4,7 @@ Connection pool is a thread safe list of net.Conn
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/sokil/go-connection-pool)](https://goreportcard.com/report/github.com/sokil/go-connection-pool)
 [![GoDoc](https://godoc.org/github.com/sokil/go-connection-pool?status.svg)](https://godoc.org/github.com/sokil/go-connection-pool)
-
+[![Code Climate](https://codeclimate.com/github/sokil/go-connection-pool/badges/gpa.svg)](https://codeclimate.com/github/sokil/go-connection-pool)
 ## Basic usage
 
 ```go
